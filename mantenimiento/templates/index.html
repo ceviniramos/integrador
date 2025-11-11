@@ -4,104 +4,67 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mantenimiento de Vehículos - Grupo 10</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 
 <body>
 
-    <!-- MENÚ -->
-    <header>
-        <nav class="menu">
-            <ul>
-                <li><a href="#inicio">Inicio</a></li>
-                <li><a href="#servicios">Servicios</a></li>
-                <li><a href="#talleres">Talleres</a></li>
-            </ul>
-        </nav>
-    </header>
+<header>
+    <nav class="menu">
+        <ul>
+            <li><a href="#inicio">Inicio</a></li>
+            <li><a href="#servicios">Servicios</a></li>
+            <li><a href="#mapa">Talleres</a></li>
+        </ul>
+    </nav>
+</header>
 
-    <!-- INICIO -->
-    <section id="inicio">
-        <h1>Mantenimiento de Vehículos</h1>
-        <h2>Talleres Mecánicos</h2>
-        <h3>Servicios más comunes</h3>
-    </section>
+<section id="inicio">
+    <h1>Mantenimiento de Vehículos</h1>
+    <h2>Talleres Mecánicos</h2>
+    <h3>Servicios más comunes</h3>
+</section>
 
-    <!-- FLEXBOX IMÁGENES FIJAS -->
-    <section id="servicios">
-        <div class="contenedor-img">
-
-            {% for s in servicios %}
-            <div class="caja">
-                <img src="{{ url_for('static', filename='img/' ~ s.imagen) }}" alt="Servicio">
-                <p>{{ s.descripcion }}</p>
-            </div>
-            {% endfor %}
-
-        </div>
-    </section>
-
-    <!-- TABLA DE VEHÍCULOS -->
-    <h2>Vehículos registrados</h2>
-
-    {% if vehiculos %}
+<section id="servicios">
+    <h2>Servicios realizados</h2>
     <table class="tabla">
         <tr>
             <th>Patente</th>
             <th>Marca</th>
             <th>Modelo</th>
             <th>Año</th>
-        </tr>
-        {% for v in vehiculos %}
-        <tr>
-            <td>{{ v.patente }}</td>
-            <td>{{ v.marca }}</td>
-            <td>{{ v.modelo }}</td>
-            <td>{{ v.año }}</td>
-        </tr>
-        {% endfor %}
-    </table>
-    {% endif %}
-
-    <br>
-
-    <!-- TABLA DE SERVICIOS -->
-    <h2 id="talleres">Servicios realizados</h2>
-
-    {% if servicios %}
-    <table class="tabla">
-        <tr>
-            <th>Patente</th>
             <th>Descripción</th>
             <th>Fecha</th>
             <th>Costo</th>
             <th>Imagen</th>
         </tr>
 
-        {% for s in servicios %}
+        {% for d in datos %}
         <tr>
-            <td>{{ s.patente }}</td>
-            <td>{{ s.descripcion }}</td>
-            <td>{{ s.fecha }}</td>
-            <td>${{ s.costo }}</td>
-            <td><img src="{{ url_for('static', filename='img/' ~ s.imagen) }}" width="120"></td>
+            <td>{{ d.patente }}</td>
+            <td>{{ d.marca }}</td>
+            <td>{{ d.modelo }}</td>
+            <td>{{ d.anio }}</td>
+            <td>{{ d.descripcion }}</td>
+            <td>{{ d.fecha }}</td>
+            <td>${{ d.costo }}</td>
+            <td><img src="{{ url_for('static', filename='img/' ~ d.imagen) }}" width="120"></td>
         </tr>
         {% endfor %}
     </table>
-    {% endif %}
+</section>
 
-    <!-- MAPA -->
-    <h2>Ubicación de un taller real</h2>
-    <div class="mapa">
-        <iframe 
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d26782.441938290965!2d-60.71595682568355!3d-32.956150999999984!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95b7ad41b0982eb5%3A0x1eb1f8a0af22f29b!2sLeMans%20-%20Taller%20Chaper%C3%ADa%20y%20Pintura%20-%20Rosario!5e0!3m2!1ses!2sar!4v1761776521586!5m2!1ses!2sar"
-            width="400" height="250" style="border:0;" allowfullscreen loading="lazy">
-        </iframe>
-    </div>
+<section id="mapa">
+    <h2>Ubicación del taller</h2>
+    <iframe 
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d26782.441938290965!2d-60.71595682568355!3d-32.956150999999984!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95b7ad41b0982eb5%3A0x1eb1f8a0af22f29b!2sLeMans%20-%20Taller%20Chaper%C3%ADa%20y%20Pintura%20-%20Rosario!5e0!3m2!1ses!2sar!4v1761776521586!5m2!1ses!2sar"
+        width="600" height="300" style="border:0;" allowfullscreen="" loading="lazy">
+    </iframe>
+</section>
 
-    <footer>
-        <p>Trabajo Práctico - Grupo 10</p>
-    </footer>
+<footer>
+    <p>Trabajo Práctico Nº2 - Grupo 10 - Mantenimiento de Vehículos</p>
+</footer>
 
 </body>
 </html>
