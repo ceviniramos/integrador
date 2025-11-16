@@ -27,31 +27,23 @@
 
 <section id="servicios">
     <h2>Servicios realizados</h2>
-    <table class="tabla">
-        <tr>
-            <th>Patente</th>
-            <th>Marca</th>
-            <th>Modelo</th>
-            <th>Año</th>
-            <th>Descripción</th>
-            <th>Fecha</th>
-            <th>Costo</th>
-            <th>Imagen</th>
-        </tr>
 
+    <div class="cards-container">
         {% for d in datos %}
-        <tr>
-            <td>{{ d.patente }}</td>
-            <td>{{ d.marca }}</td>
-            <td>{{ d.modelo }}</td>
-            <td>{{ d.anio }}</td>
-            <td>{{ d.descripcion }}</td>
-            <td>{{ d.fecha }}</td>
-            <td>${{ d.costo }}</td>
-            <td><img src="{{ url_for('static', filename='img/' ~ d.imagen) }}" width="120"></td>
-        </tr>
+        <div class="card">
+            <img src="{{ url_for('static', filename='img/' ~ d.imagen) }}" class="card-img">
+
+            <div class="card-body">
+                <h3>{{ d.marca }} {{ d.modelo }} ({{ d.anio }})</h3>
+
+                <p><strong>Patente:</strong> {{ d.patente }}</p>
+                <p><strong>Servicio:</strong> {{ d.descripcion }}</p>
+                <p><strong>Fecha:</strong> {{ d.fecha }}</p>
+                <p><strong>Costo:</strong> ${{ d.costo }}</p>
+            </div>
+        </div>
         {% endfor %}
-    </table>
+    </div>
 </section>
 
 <section id="mapa">
